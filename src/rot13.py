@@ -12,7 +12,14 @@ def rot13(words: str) -> str:
     out = ""
     for char in words:
         if (char.isalpha()):
-            if (((ord("z") - ord(char)) > 13) ^ ((ord("Z") - ord(char)) > 13)):
+            if (
+                (
+                    (ord("z") - ord(char)) > 13 and char.islower()
+                ) or
+                (
+                    (ord("Z") - ord(char)) > 13 and char.isupper()
+                )
+            ):
                 out += chr(ord(char) + 13)
             else:
                 out += chr(ord(char) - 13)
